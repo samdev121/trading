@@ -44,10 +44,10 @@ Option selling blowouts happen when traders deploy 100% of their ledger to colle
 | :--- | :---: | :---: | :---: | :---: |
 | **₹1,00,000** | ₹65,000 – ₹70,000 | ₹30,000 – ₹35,000 | 1 Lot Credit Spread | ❌ (Insufficient Margin) |
 | **₹5,00,000** | ₹3,50,000 | ₹1,50,000 | 3–4 Lots Spreads / Condors | 2 Lots Credit Spreads |
-| **₹10,00,000** | **₹7,00,000 – ₹7,50,000** | **₹2,50,000 – ₹3,00,000** | **6–8 Lots Spreads / Condors** | **4–5 Lots Strangle / Spreads** |
+| **₹10,00,000** | **₹7,00,000** | **₹3,00,000** | **6–8 Lots Spreads / Condors** | **4–5 Lots Strangle / Spreads** |
 
-* **Zero-Leverage Rule:** Never utilize more than **75% of total account margin** at any given moment.
-* **Buffer Utility:** The remaining 25%–30% buffer absorbs intraday Implied Volatility (IV) spikes without triggering margin calls.
+* **Zero-Leverage Rule:** Never utilize more than **70% of total account margin** at any given moment.
+* **Buffer Utility:** The remaining **30% buffer** absorbs intraday Implied Volatility (IV) spikes without triggering margin calls.
 
 ---
 
@@ -77,7 +77,7 @@ Option selling blowouts happen when traders deploy 100% of their ledger to colle
   2. Buy 1 Far OTM Call (Hedge / Wing).
   3. Sell 1 OTM Put (Delta 0.12 – 0.15).
   4. Buy 1 Far OTM Put (Hedge / Wing).
-* **Target:** 65% – 75% of maximum premium collected.
+* **Target:** 80% decay of maximum premium collected (per Law #7 — e.g., ₹50 credit → close at ₹10).
 * **Stop-Loss:** Total loss on condor reaches **1.0× of initial credit collected** (e.g., if ₹10,000 collected, cut trade at -₹10,000 loss).
 
 ---
@@ -87,7 +87,7 @@ Option selling blowouts happen when traders deploy 100% of their ledger to colle
 * **Construction (2 Legs):**
   1. **Sell ATM/OTM Put** below major support (Delta 0.25 – 0.30).
   2. **Buy Far OTM Put** 150–200 points lower (Hedge / Margin reducer).
-* **Stop-Loss:** Underlying 5-min candle officially closes **below the short put strike**.
+* **Stop-Loss:** Underlying 5-min candle officially closes **below the short put strike**, OR short put premium reaches **2.0× entry price** (Law #3 override) — whichever triggers first.
 
 ---
 
@@ -96,7 +96,7 @@ Option selling blowouts happen when traders deploy 100% of their ledger to colle
 * **Construction (2 Legs):**
   1. **Sell ATM/OTM Call** above major resistance (Delta 0.25 – 0.30).
   2. **Buy Far OTM Call** 150–200 points higher (Hedge / Margin reducer).
-* **Stop-Loss:** Underlying 5-min candle officially closes **above the short call strike**.
+* **Stop-Loss:** Underlying 5-min candle officially closes **above the short call strike**, OR short call premium reaches **2.0× entry price** (Law #3 override) — whichever triggers first.
 
 ---
 
@@ -128,7 +128,7 @@ Option selling blowouts happen when traders deploy 100% of their ledger to colle
   2. **Sell 1 OTM Call** + **Buy 1 Far OTM Call** (Bear Call Credit Spread).
 * **Golden Construction Rule:** **Total Credit Collected (Put + Call Spread) MUST exceed the width of the Call Spread.**
 * **Edge:** Because total credit > Call spread width, you have **ZERO upside risk** even if the market shoots up vertically.
-* **Stop-Loss:** Downside breakeven (`Short Put Strike - Total Credit`) on a 15-minute candle close.
+* **Stop-Loss:** Downside breakeven (`Short Put Strike - Total Credit`) on a 15-minute candle close, OR naked short put premium reaches **2.0× entry price** (Law #3 override) — whichever triggers first.
 
 ---
 
@@ -204,6 +204,8 @@ Option selling blowouts happen when traders deploy 100% of their ledger to colle
 
 ## 6. DEFENSE & ADJUSTMENT PLAYBOOK
 ### The "Firefighting" Protocol When Tested
+
+> **⚠️ UNIVERSAL OVERRIDE (Law #3):** Regardless of any strategy-specific stop-loss rule, if ANY sold option's premium reaches **2.0× of entry price**, exit that leg immediately. This applies to ALL 10 strategies without exception — whichever SL triggers first (structural, percentage, or 2× premium) is the exit signal.
 
 When an underlying asset makes an aggressive move toward your short strike, **hope is not a strategy**. We execute mechanical adjustments:
 

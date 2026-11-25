@@ -69,7 +69,7 @@ Every session must verify live contract expiry dates via **DhanHQ API (`expiry_l
 ```
 [ ] 1. Is total margin deployment strictly <= 70% of account?
 [ ] 2. Is order type set to LIMIT (Never Market)?
-[ ] 3. Is Delta between 0.08 and 0.15 (POP > 85%)?
+[ ] 3. Is Delta within the strategy's mandated range? (0.08–0.15 for Condors/Strangles; ~0.50 for ATM Straddles/Flies; 0.20–0.30 for directional Credit Spreads/Jade Lizard)
 [ ] 4. Has the Day's High/Low structural defense line been marked on the chart?
 [ ] 5. If MCX: Is current time before 9:00 PM (No entries in the final 90 mins)?
 [ ] 6. Has a GTT/Limit Buy order been prepared at 80% decay for automatic target booking?
