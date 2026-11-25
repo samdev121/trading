@@ -1,0 +1,4 @@
+=== LIVE PAPER MTM [14:48:18 IST] | Spot: 25,742.70 | VIX: 17.88 ===
+[Trade #1 Iron Condor | 390 Qty] Entry: 36.70 | Current: 33.20 | MTM: +1,365.00 (+3.50 pts)
+[Trade #2 Straddle 25950 | 130 Qty] CLOSED | CE @ 155.45 (+12,935.00) | PE @ 276.25 (-7,182.50) | Realized Gross: +5,752.50 (Net: +5,545.50)
+Total Paper Portfolio MTM: +7,117.50
