@@ -45,7 +45,7 @@ Setting an arbitrary tight point-based Stop-Loss on an Option contract while the
 
 ### 🛑 UNBREAKABLE LAW #2: Index Structural Stop-Loss Rule
 1. **Index Invalidation is the Primary Trigger**: The decision to exit a trade is based strictly on the **Index chart structure** (e.g. "5-minute candle closes below VWAP or below the breakout base shelf"), NOT arbitrary option ticks.
-2. **Catastrophe Option Stop**: The option hard stop in the broker terminal must be a wide safety net (18–20 pts max) to protect against black-swan crashes, but the planned exit trigger remains the Index level close.
+2. **Catastrophe Option Stop (Immediate on Groww)**: Immediately place a hard SL-Limit in Groww at **15–18 pts** (max ₹975–₹1,170 risk on 65 Qty) as mechanical protection against black-swan spikes, while using the **Index structural invalidation** (5-min close) to exit early if the thesis breaks before the hard stop is hit.
 3. If the Index has not broken its structural invalidation, do not let normal 5-second option spread wicks shake you out of a winning thesis.
 
 ---
@@ -149,7 +149,7 @@ Allowing theoretical deductions or playbook assumptions to masquerade as live fa
    * *Fix*: Replaced visual DOM inspection with direct Python calls to DhanHQ Data API v2 (`get_strikes.py`), reducing round-trip latency to < 500ms.
 2. **Fragile One-Shot Timer Chaining**:
    * Relying on `schedule` one-shot timers (`DurationSeconds: 240`) required re-scheduling at the end of every turn. When a turn finished without an explicit timer (at 11:15 AM), the agent sat waiting for user input, causing the 32-minute gap.
-   * *Fix*: Run a dedicated standing background daemon script (`live_copilot_daemon.py`) that polls Dhan API on every 5-min candle close without needing turn-by-turn manual timer chaining.
+   * *Fix*: Run a dedicated standing background daemon script (`dhan_automation/live_ws_daemon.py`) that polls/streams Dhan API without needing turn-by-turn manual timer chaining.
 3. **Sequential Tool Overhead**:
    * Executing 3 separate sequential tool calls per check (Python script $\rightarrow$ JS evaluate script $\rightarrow$ schedule timer) compounded network and model inference latency.
    * *Fix*: Consolidate all metrics (Spot, Futures, ATM Options, and OI Delta) into a single unified JSON payload.
@@ -170,4 +170,4 @@ Allowing theoretical deductions or playbook assumptions to masquerade as live fa
 | **#8** | Fragmented Turn-by-Turn Timers | 32-min gap when timer wasn't re-armed | **Unified Standing Daemon: Single persistent polling process** |
 
 ---
-*Maintained by Antigravity Co-Pilot for shakhan32. Saved at C:\Users\shakhan32\Desktop\trading\Live_Market_Lessons_and_Mistakes_Log.md*
+*Maintained by Antigravity Co-Pilot for shakhan32. Saved at buying/Live_Market_Lessons_and_Mistakes_Log.md*

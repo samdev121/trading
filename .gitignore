@@ -27,6 +27,7 @@ daemon.log
 live_pulse.json
 alert.json
 candles.json
+.nifty_future_cache.json
 
 # ==============================================================================
 # AGENT & IDE CONFIGURATIONS

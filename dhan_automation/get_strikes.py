@@ -4,34 +4,28 @@ Fetch real-time snapshot of strikes around Spot for institutional setup analysis
 import sys
 from pathlib import Path
 
-# Add current dir to path
-sys.path.append(str(Path(__file__).resolve().parent))
-from dhan_engine import get_dhan_client, get_nifty_expiry_list
+CURRENT_DIR = Path(__file__).resolve().parent
+if str(CURRENT_DIR) not in sys.path:
+    sys.path.insert(0, str(CURRENT_DIR))
+
+from dhan_engine import get_dhan_client, get_nifty_expiry_list, unwrap_option_chain_data
 
 dhan = get_dhan_client()
 if not dhan:
     sys.exit(1)
 
-exp_data = get_nifty_expiry_list()
-dates = []
-if isinstance(exp_data, list):
-    dates = exp_data
-elif isinstance(exp_data, dict):
-    dates = exp_data.get("data", [])
+dates = get_nifty_expiry_list()
+if not dates:
+    print("Failed to fetch upcoming NIFTY expiries.")
+    sys.exit(1)
 
-expiry = str(dates[0]) if dates else "2026-11-23"
-
+expiry = dates[0]
 resp = dhan.option_chain(13, "IDX_I", expiry)
 if resp.get("status") != "success":
     print("Failed to get chain:", resp)
     sys.exit(1)
 
-raw_data = resp.get("data", {})
-if "data" in raw_data and isinstance(raw_data["data"], dict):
-    data = raw_data["data"]
-else:
-    data = raw_data
-
+data = unwrap_option_chain_data(resp)
 spot = float(data.get("last_price", 0))
 oc = data.get("oc", {})
 
@@ -41,7 +35,6 @@ print(f"Spot LTP: {spot:.2f}\n")
 print(f"{'Strike':^8} | {'CE LTP':^8} | {'CE OI':^12} | {'PE LTP':^8} | {'PE OI':^12}")
 print("-" * 56)
 
-# Get sorted strikes around spot (spot - 200 to spot + 200)
 sorted_strikes = sorted([float(k) for k in oc.keys() if abs(float(k) - spot) <= 200])
 
 for s in sorted_strikes:

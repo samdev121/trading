@@ -260,17 +260,17 @@ When a trade is ready, the co-pilot delivers this single actionable card:
 🎯 NIFTY TRADE BRACKET: [CALL BUY / PUT BUY]
 ======================================================
 - Instrument:        NIFTY [STRIKE] [CE/PE] ([Current/Next] Expiry)
-- Quantity on Groww: 1 Lot (75 Qty) [Max 2 Lots on A+ Setup]
+- Quantity on Groww: 1 Lot (65 Qty)
 - Setup Type:        [Breakout Retest / Liquidity Trap / Momentum Surge]
 - Quality Grade:     [A+ / A / B]
 ------------------------------------------------------
 - Ideal Entry Zone:  ₹[XXX] - ₹[XXX]
 - Max Chase Price:   ₹[XXX] (DO NOT ENTER ABOVE THIS)
-- Option Stop-Loss:  ₹[XXX] (Strict 12-15 pts | Max risk ₹1,125)
-- Spot Invalidation: Below/Above ₹[XX,XXX] on 5-min close
+- Option Stop-Loss:  ₹[XXX] (Strict 15-18 pts | Max risk ₹975 - ₹1,170)
+- Spot Invalidation: Below/Above ₹[XX,XXX] on 5-min close (Exit early if broken)
 ------------------------------------------------------
-- Target 1 (Book Profit & SL to Cost): ₹[XXX] (+20-25 pts | ₹1,500 - ₹1,875 profit)
-- Target 2 (Runner):                   ₹[XXX] (+40-50 pts | ₹3,000 - ₹3,750 profit)
+- Target 1 (Book Profit & SL to Cost): ₹[XXX] (+20-25 pts | ₹1,300 - ₹1,625 profit)
+- Target 2 (Runner):                   ₹[XXX] (+40-50 pts | ₹2,600 - ₹3,250 profit)
 ======================================================
 ```
 
@@ -314,4 +314,4 @@ When a trade is ready, the co-pilot delivers this single actionable card:
    * **Real Capital Principle**: Options trading involves real hard-earned capital. Zero tolerance for theoretical assumptions disguised as live facts. If it is not on the screen, it does not exist until verified.
 
 ---
-*Created for shakhan32. Saved in Desktop/trading/*
+*Created for shakhan32. Saved in buying/Nifty_Intraday_Trading_Copilot_Playbook.md*

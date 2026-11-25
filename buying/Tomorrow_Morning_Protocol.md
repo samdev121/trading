@@ -1,6 +1,6 @@
 # 🌅 TOMORROW MORNING ROUTINE (STEP-BY-STEP)
 **Trading Account:** Groww  
-**Capital:** ₹1,00,000 (Trade size: 1 Lot / 75 Qty)  
+**Capital:** ₹1,00,000 (Trade size: 1 Lot / 65 Qty)  
 **Target:** NIFTY Index Options  
 
 ---
@@ -50,6 +50,6 @@ This is our prime momentum hunting window.
   - `!plan CE [level]` or `!plan PE [level]` $\rightarrow$ I deliver the exact order card.
   - Or simply drop a **chart screenshot**.
 * When I give you the **TRADE BRACKET**:
-  1. Open Groww $\rightarrow$ Select the recommended strike $\rightarrow$ Set **Limit Order** for **1 Lot (75 qty)** in the Entry Zone.
+  1. Open Groww $\rightarrow$ Select the recommended strike $\rightarrow$ Set **Limit Order** for **1 Lot (65 qty)** in the Entry Zone.
   2. Once filled, go to **Positions** $\rightarrow$ Click position $\rightarrow$ **Add Stop Loss (SL-L)** with the exact SL price.
   3. At Target 1 (+20 to +25 pts), book profit and move SL to Cost.

@@ -9,8 +9,8 @@
 **Virtual Capital:** ₹1,00,000 (Allocated trade size: 1 Lot / 65 Qty)  
 **Standard Lot Size:** 65 Qty  
 **Capital Deployed Per Trade:** Max ₹15,000 – ₹22,000 (~15%–20%)  
-**Risk Per Trade:** Max 12–15 points on option premium (Max loss: ₹1,125 – ₹1,500)  
-**Daily Loss Limit (Circuit Breaker):** -₹3,000 (2 consecutive losses = Terminal Closed)  
+**Risk Per Trade:** Max 15–18 points on option premium (Max loss: ₹975 – ₹1,170 on 65 Qty)  
+**Daily Loss Limit (Circuit Breaker):** -₹2,340 (2 consecutive losses = Terminal Closed)  
 **Chart Setup:**
 - NIFTY Spot: 5-Minute Candlestick Chart + VWAP (`VWAP hlc3 Session`)
 - Option Premium: 3-Minute Chart for pullback entry & trailing
@@ -29,7 +29,7 @@
 ## 🧠 STRATEGY MEMORY & ARCHIVED RULES
 1. **Never Chase**: Only buy on the 3-min pullback retest after 5-min candle confirmation.
 2. **Never Buy OTM**: Only Delta 0.50–0.60 (ATM or Slight ITM).
-3. **Midday Freeze**: 11:30 AM to 01:00 PM is strictly NO-TRADE / CHOP zone.
+3. **Midday Window (11:00 AM – 01:00 PM)**: Conditional / A+ Setups Only (VWAP rejection or clean floor breakdown with tight SL; ignore random chop).
 4. **Target 1 Rule**: At +20 to +25 points, book profit and immediately trail Stop-Loss to Cost.
 5. **Zero-Tolerance Precision (The 25,146 vs 25,163 Lesson)**: Never read background Y-axis grid lines. The only acceptable source of truth is the candle's explicit OHLC tooltip or the trader's confirmed spot input.
 6. **Strict 09:15 - 09:30 AM Freeze**: The opening 15 minutes is strictly for discovery. Never trade inside this window, no matter how big the candle looks.
