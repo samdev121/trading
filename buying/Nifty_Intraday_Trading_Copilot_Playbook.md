@@ -68,7 +68,7 @@ Option buying with ₹1,00,000 capital requires strict sizing to prevent account
 
 | Time Window | Market Phase | Co-Pilot Focus | Trader Action on Groww |
 | :--- | :--- | :--- | :--- |
-| **09:00 – 09:15 AM** | Pre-Market | Calculate CPR, PDH/PDL, Max OI walls | Add ATM CE & PE to Groww watchlist |
+| **08:50 – 09:15 AM** | Pre-Market | Check Global Cues (GIFT NIFTY, US/Asia, Macro events), CPR, PDH/PDL, Max OI walls | Add ATM CE & PE to Groww watchlist |
 | **09:15 – 09:30 AM** | Opening Discovery | Track initial 15-min range (ORB), VWAP establishment | Observe, NO impulse trades |
 | **09:30 – 11:30 AM** | **Prime Momentum Window** | Active hunting for Setup 1, 2, or 3 | Execute verified high-probability setups |
 | **11:00 – 01:00 PM** | **Midday Window (Conditional / Optional)** | Hunt for A+ Setups (VWAP Rejection / Clean Floor Breakdown). **Agar confirmed setup mile toh zaroor alert karein.** | Execute ONLY on confirmed A+ setup with tight SL; ignore random chop |
@@ -111,6 +111,12 @@ India VIX measures market volatility expectations. For an intraday option buyer,
 * **VIX > 18.0 (Wild Volatility / Spike Regime)**:
   - Violent swings and erratic wicks.
   - Action: Quick booking at Target 1 (+20 pts); do not hold runners through deep pullbacks.
+
+### D. Global & Macro Cues (08:50 – 09:05 AM)
+* **GIFT NIFTY**: Estimates opening gap vs PDC (large gap >0.7% often triggers opening profit-booking or VWAP retest).
+* **US Markets (S&P 500 / Nasdaq + US Futures)**: Sets overnight risk-on / risk-off sentiment.
+* **Asian Markets (Nikkei, Hang Seng / China)**: Confirms whether Asia is extending or fading the US move.
+* **Macro / Event Calendar**: Crude Oil spikes, USD/INR moves, US Fed / RBI policy / CPI prints (expect elevated wicks and wider swings).
 
 ---
 
@@ -207,6 +213,7 @@ Option buyers only trade when institutional capital is forcing immediate directi
 2. **Straddle Writing Dominance**: Both ATM CE and PE are adding massive OI simultaneously (institutions locking the market in a tight range to harvest theta).
 3. **Mid-Range Dead Zone**: Spot is hovering in the middle between PDH and PDL with no nearby support/resistance.
 4. **PCR Neutrality**: PCR is stuck between 0.90 and 1.10 with no directional expansion.
+5. **Unpriced Global Shock / Major Macro Event**: Sudden overnight US/China crash or major RBI/Fed/CPI announcement causing erratic opening whipsaws and wide bid-ask spreads.
 
 ---
 

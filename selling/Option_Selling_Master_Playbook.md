@@ -74,20 +74,21 @@ Option selling blowouts happen when traders deploy 100% of their ledger to colle
 * **Market Regime:** Sideways market, Post-Event Volatility Crush, High IV Percentile (IVR > 35).
 * **Construction (4 Legs):**
   1. Sell 1 OTM Call (Delta 0.12 – 0.15).
-  2. Buy 1 Far OTM Call (Hedge / Wing).
+  2. Buy 1 Far OTM Call (150–200 pts higher — Hedge / Wing).
   3. Sell 1 OTM Put (Delta 0.12 – 0.15).
-  4. Buy 1 Far OTM Put (Hedge / Wing).
-* **Target:** 80% decay of maximum premium collected (per Law #7 — e.g., ₹50 credit → close at ₹10).
-* **Stop-Loss:** Total loss on condor reaches **1.0× of initial credit collected** (e.g., if ₹10,000 collected, cut trade at -₹10,000 loss).
+  4. Buy 1 Far OTM Put (150–200 pts lower — Hedge / Wing).
+* **Target:** **50% decay** of net credit collected *(135-session backtest: outperformed 80% decay by +₹15,365; do not get greedy for the last 30%)*.
+* **Stop-Loss:** Net spread loss reaches **1.0× of initial credit collected** (never use tight 20% single-leg wick stops on defined-risk OTM condors).
 
 ---
 
 ### 🟢 Strategy 2: Bull Put Credit Spread (Directional Support Defense)
-* **Market Regime:** Bullish Trend / Retest of Key Structural Floor / High Put Skew.
+* **Market Regime:** Bullish Trend / Retest of Key Structural Floor / High Put Skew *(Global cues bullish + Spot holding above VWAP; avoid in bearish macro regimes)*.
 * **Construction (2 Legs):**
   1. **Sell ATM/OTM Put** below major support (Delta 0.25 – 0.30).
   2. **Buy Far OTM Put** 150–200 points lower (Hedge / Margin reducer).
-* **Stop-Loss:** Underlying 5-min candle officially closes **below the short put strike**, OR short put premium reaches **2.0× entry price** (Law #3 override) — whichever triggers first.
+* **Target:** **50% decay** of net credit collected.
+* **Stop-Loss:** Net spread loss reaches **1.0× initial credit**, OR underlying 5-min candle closes **below the short put strike**, OR short put premium reaches **2.0× entry price** — whichever triggers first.
 
 ---
 
@@ -96,7 +97,8 @@ Option selling blowouts happen when traders deploy 100% of their ledger to colle
 * **Construction (2 Legs):**
   1. **Sell ATM/OTM Call** above major resistance (Delta 0.25 – 0.30).
   2. **Buy Far OTM Call** 150–200 points higher (Hedge / Margin reducer).
-* **Stop-Loss:** Underlying 5-min candle officially closes **above the short call strike**, OR short call premium reaches **2.0× entry price** (Law #3 override) — whichever triggers first.
+* **Target:** **50% decay** of net credit collected *(Top-performing backtest setup: 76.3% win rate, positive net expectancy after fees & slippage)*.
+* **Stop-Loss:** Net spread loss reaches **1.0× initial credit**, OR underlying 5-min candle closes **above the short call strike**, OR short call premium reaches **2.0× entry price** — whichever triggers first.
 
 ---
 
@@ -132,17 +134,21 @@ Option selling blowouts happen when traders deploy 100% of their ledger to colle
 
 ---
 
-### ⚙️ Strategy 7: Intraday Mechanical Straddle (25% Per-Leg SL)
-* **Market Regime:** Standard non-event NIFTY mornings (9:30 AM – 3:15 PM IST).
+### ⚙️ Strategy 7: Intraday Regime-Gated Straddle (20% Per-Leg SL)
+* **Market Regime (ALL Conditions Required — Never Blind 9:30 AM Entry):**
+  1. **Timing:** **10:15 AM – 12:30 PM IST** (only after opening whipsaw settles).
+  2. **Structure:** Wide CPR, spot coiling flat around VWAP, `0.90 <= PCR <= 1.15`, and heavy OI writing on both nearby CE & PE strikes.
+  3. **Global/Macro:** Flat/mixed global cues and **NO** major macro event (RBI/Fed/CPI). *(If narrow CPR or clean VWAP trend $\rightarrow$ skip Straddle and deploy Strategy 10 Credit Spread or Buying).*
 * **Construction (2 Legs - Strictly NIFTY Cash-Settled):**
-  1. At **9:30 AM**, sell 1 ATM Call and 1 ATM Put simultaneously.
-  2. Immediately place **25% to 30% Hard Stop-Loss (SL-L)** on **each leg individually** (e.g., if CE sold at ₹100, SL = ₹125).
-* **Edge:** Purely rule-based with zero directional bias required. If NIFTY trends, the losing leg cuts cleanly at +25% while the winning leg decays toward zero and pays for both.
+  1. Sell 1 ATM Call and 1 ATM Put simultaneously once the rangebound regime is confirmed.
+  2. Immediately place **20% Hard Stop-Loss (SL-L)** on **each leg individually** (e.g., if CE sold at ₹100, SL = ₹120).
+* **Target & Trailing:** Book combined position at **30% combined decay**; if one leg hits its 20% SL, **immediately trail the surviving leg's SL to breakeven (entry price)** and ratchet down by 25% of remaining premium on favorable decay.
 * **Mandatory Cutoff:** Square off any open leg strictly by **3:15 PM IST**.
 
 ---
 
-### 🦋 Strategy 8: Intraday Hedged Iron Fly (Low-VIX / Tight Range)
+### 🦋 Strategy 8: Intraday Hedged Iron Fly (Low-VIX / Tight Range — Conditional)
+* **Backtest Note:** In 1-min historical replay, `1-pt` slippage & 8-fill costs hurt expectancy (`11.8%` win rate on unfiltered entries) — **use strictly with Limit orders, Wide CPR, `0.90 <= PCR <= 1.15`, and `1–2 Lots` max**.
 * **Market Regime:** Low-to-moderate VIX (`< 15`) or tight opening range (`9:30 AM – 3:15 PM IST`).
 * **Construction (4 Legs - Strictly NIFTY Cash-Settled):**
   1. At **9:30 AM**, sell 1 ATM Call and 1 ATM Put.
@@ -187,6 +193,9 @@ Option selling blowouts happen when traders deploy 100% of their ledger to colle
 2. **Implied Volatility Rank (IVR) Check:**
    * `IVR > 40`: High IV environment $\rightarrow$ **Sell Strangles / Unhedged Spreads** (High premium edge).
    * `IVR < 20`: Low IV environment $\rightarrow$ **Sell ONLY tight Credit Spreads** (Avoid naked selling; premiums are too cheap to compensate for tail risk).
+3. **Global & Macro Event Filter (08:50 – 09:05 AM Check):**
+   * Check **GIFT NIFTY**, **US overnight close & Futures** (S&P 500 / Nasdaq), **Asian Markets** (Nikkei, Hang Seng / China), **Crude Oil / USD-INR**, and **RBI / US Fed / CPI event calendar**.
+   * **High-Impact Event / Global Shock Rule:** On major macro event days or >1.5% overnight US/Asia moves, **avoid naked strangles and ATM Iron Flies/Straddles** — deploy ONLY defined-risk wide Credit Spreads/Condors or deep OTM `Delta <= 0.08` (Strategy 4), or stay in cash.
 
 ---
 

@@ -23,8 +23,13 @@
 
 ---
 
-## ☀️ PART 1: MORNING ROUTINE (09:10 - 09:15 AM)
+## ☀️ PART 1: MORNING ROUTINE (08:50 - 09:15 AM)
 
+- [ ] **0. Global & Macro Cues (08:50 – 09:05 AM)**:
+  - **GIFT NIFTY**: Expected gap-up / gap-down vs PDC (`_____________`)
+  - **US Markets (S&P 500 / Nasdaq close + US Futures)**: Risk-on 🟢 / Risk-off 🔴 / Flat ⚪
+  - **Asian Markets (Nikkei / Hang Seng / China)**: Aligned or diverging?
+  - **Macro / Events Today**: Crude Oil spike, USD/INR move, RBI/Fed/CPI/Expiry? *(If major event $\rightarrow$ extra caution)*
 - [ ] **1. Check Nifty Pre-Market Spot**: Note the opening level.
 - [ ] **2. Identify Key Reference Levels**:
   - PDH (Previous Day High): `_____________`

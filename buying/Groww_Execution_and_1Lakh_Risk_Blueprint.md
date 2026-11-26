@@ -31,7 +31,7 @@ Most beginners with ₹1 Lakh make the fatal mistake of buying ₹50,000–₹80
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **B Grade** | **1 Lot** | 65 | ₹160 | ₹10,400 | 12 pts | **-₹780** | **+₹1,300** | **+₹2,600** |
 | **A Grade** | **1 Lot** | 65 | ₹180 | ₹11,700 | 15 pts | **-₹975** | **+₹1,300** | **+₹2,600** |
-| **A+ Prime** | **1 Lot** | 65 | ₹180 | ₹11,700 | 18 pts | **-₹1,170** | **+₹1,500** | **+₹3,000** |
+| **A+ Prime** | **1 Lot** | 65 | ₹180 | ₹11,700 | 18 pts | **-₹1,170** | **+₹1,300** | **+₹2,600** |
 
 > 💡 **Recommendation**: Trade strictly **1 Lot (65 qty)**. Consistency and disciplined execution come first.
 
@@ -72,7 +72,7 @@ As soon as the order fills:
 
 With ₹1,00,000 capital and disciplined 1-lot trading:
 * Daily Target: **+₹1,500 to +₹2,500** on winning days.
-* Average Risk: **-₹1,125** on losing days.
+* Average Risk: **-₹975 to -₹1,170** (15–18 pts × 65 Qty) on losing days.
 * Target Win Rate with Co-Pilot: **65%–70%**.
 * Over 20 trading days:
   * 13 Winning Days $\approx$ +₹26,000

@@ -127,6 +127,6 @@ Track which strategy generates the highest risk-adjusted yield:
 
 ## 🛡️ PAPER TRADING RULES OF ENGAGEMENT
 1. **Treat Virtual Capital Like Real Money:** Never take a paper trade that you wouldn't take with real cash.
-2. **Strict Slippage & Commission Deduction:** Always deduct standard ₹20/order brokerage and 0.1% CTT so paper results reflect live net yields.
+2. **Strict Slippage & Commission Deduction:** Always deduct standard ₹20/order brokerage, 0.1% STT/exchange/GST, and realistic **0.5–1.0 pt Limit-order slippage** so paper results reflect live net expectancy.
 3. **Never Paper Trade With Unrealistic Prices:** Enter and exit only at live BID/ASK prices fetched from the Dhan API.
-4. **Minimum 20 Trades Before Scaling Real Capital:** We will run at least 20 documented paper trades to validate our win rate (POP > 80%) before deploying real capital.
+4. **Minimum 20 Trades Before Scaling Real Capital:** We will run at least 20 documented paper trades and require **positive Net Expectancy (Avg Net P&L > 0) & controlled Max Drawdown** — not win rate alone — before deploying real capital.

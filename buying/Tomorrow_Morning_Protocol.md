@@ -16,6 +16,12 @@
 
 ---
 
+### 08:50 AM – Global & Macro Cues Check
+* Before NSE pre-market settles, Co-Pilot checks **GIFT NIFTY** (expected opening gap), **US Markets** (S&P 500 / Nasdaq overnight close & US Futures), **Asian Markets** (Nikkei, Hang Seng / China), and **Macro Events / Crude / USD-INR**.
+* Flags whether it's a **Trend/Gap day**, **Fade-risk day**, or **Event-volatility day**.
+
+---
+
 ### 09:08 AM – Pre-Market Settlement Check
 * At 09:08 AM, the NSE Pre-Market session concludes and reveals the official Nifty opening spot price.
 * Look at the NIFTY spot price on Groww and type to me:

@@ -28,6 +28,8 @@ live_pulse.json
 alert.json
 candles.json
 .nifty_future_cache.json
+backtest/data/
+*.parquet
 
 # ==============================================================================
 # AGENT & IDE CONFIGURATIONS

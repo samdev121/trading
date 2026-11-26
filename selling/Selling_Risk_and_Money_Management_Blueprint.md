@@ -57,7 +57,7 @@ Every session must verify live contract expiry dates via **DhanHQ API (`expiry_l
 
 | Setup | Max Lot Sizing | Margin Used | Max Acceptable Loss (1.5% Cap) | Profit Target |
 | :--- | :---: | :---: | :---: | :---: |
-| **NIFTY Weekly Iron Condor** | 6 to 8 Lots | ~₹3.5L – ₹4.8L | -₹15,000 | +₹12,000 to +₹18,000 |
+| **NIFTY Weekly Iron Condor** | **1 to 2 Lots** *(Paper/Validation)* | ~₹0.8L – ₹1.4L | -₹15,000 | +₹2,500 to +₹5,000 |
 | **NIFTY Credit Spread** | 8 to 10 Lots | ~₹4.0L – ₹5.0L | -₹12,000 | +₹10,000 to +₹15,000 |
 | **Silver Mini Strangle (MCX)** | **4 Lots Max** | ~₹5.5L – ₹6.5L | **-₹6,000** | **+₹1,500 to +₹2,500** |
 | **Silver Mini Credit Spread** | 4 to 5 Lots | ~₹3.0L – ₹4.0L | -₹8,000 | +₹2,000 to +₹3,500 |
@@ -72,22 +72,23 @@ Every session must verify live contract expiry dates via **DhanHQ API (`expiry_l
 [ ] 3. Is Delta within the strategy's mandated range? (0.08–0.15 for Condors/Strangles; ~0.50 for ATM Straddles/Flies; 0.20–0.30 for directional Credit Spreads/Jade Lizard)
 [ ] 4. Has the Day's High/Low structural defense line been marked on the chart?
 [ ] 5. If MCX: Is current time before 9:00 PM (No entries in the final 90 mins)?
-[ ] 6. Has a GTT/Limit Buy order been prepared at 80% decay for automatic target booking?
+[ ] 6. Has a GTT/Limit Buy order been prepared at the strategy target (50% decay for Spreads/Condors; 30% for Straddles; 80-90% for 0DTE)?
 ```
 
 ---
 
 ## 🌅 DAILY MORNING ROUTINE & STRATEGY SELECTION (09:00 AM – 03:15 PM IST)
 
-1. **09:00 – 09:15 AM IST (System & Pre-Market Check):**
+1. **08:50 – 09:15 AM IST (Global Cues, System & Pre-Market Check):**
+   * **Global & Macro Cues (08:50 – 09:05 AM):** Check **GIFT NIFTY** (expected opening gap), **US overnight close & Futures** (S&P 500 / Nasdaq), **Asian Markets** (Nikkei, Hang Seng / China), **Crude Oil / USD-INR**, and any **RBI / US Fed / CPI macro events** today *(if major event day $\rightarrow$ avoid aggressive ATM/naked selling)*.
    * Verify **DhanHQ API token** (`dhan_config.env`) and run `market_pulse.py` to confirm live Spot, India VIX, and Option Chain connectivity.
    * Check overnight positional MTM (e.g., open Iron Condors) and mark **PDH / PDL / PDC**, **OI Walls**, and expiry calendar (NSE NIFTY = Tuesday; BSE SENSEX = Thursday).
 2. **09:15 – 09:28 AM IST (Opening Discovery — Observe Only):**
    * Track opening gap, bid-ask spreads, and 5-min VWAP on `tv.dhan.co`. **Zero impulse entries** during opening whipsaw.
 3. **09:30 AM IST (Live Strategy Selection & Execution):**
-   * **Sideways + High VIX (`> 16`):** Strategy 7 (*Intraday Mechanical Straddle, 25% SL*) or Strategy 9 (*20-Delta OTM Strangle, 30% SL*).
-   * **Sideways + Low VIX (`< 15`):** Strategy 8 (*Intraday Hedged Iron Fly*).
-   * **Directional Trend Holding VWAP:** Strategy 10 (*VWAP-Confirmed Credit Spread*) or Strategies 2/3.
+   * **Sideways + High VIX (`> 16` / `IVR > 35`):** Strategy 1 (*Iron Condor, 1–2 Lots, 50% tgt, 1× SL*) or Strategy 7 (*Regime-Gated Straddle, 20% SL, 30% tgt, 10:15+ only*).
+   * **Sideways + Low VIX (`< 15`):** Strategy 8 (*Intraday Hedged Iron Fly — strict Limit orders, Wide CPR, `0.90 <= PCR <= 1.15`, 1–2 Lots*) or Strategy 4 on expiry afternoon.
+   * **Directional Trend Holding VWAP:** Strategy 3 (*Bear Call Spread — primary positive-expectancy setup*) or Strategy 10 (*VWAP-Confirmed Credit Spread*); avoid Strategy 2 (*Bull Put*) in bearish macro regimes.
    * **Expiry Afternoon (`12:30 PM – 03:15 PM`):** Strategy 4 (*0DTE Expiry Harvest*).
    * Size strictly within the **70:30 Margin Rule**, launch the **30s zero-token watcher (`check_paper_trades.py --watch`)**, and log every trade in the journal.
 4. **03:15 PM IST (Mandatory Intraday Cutoff):**

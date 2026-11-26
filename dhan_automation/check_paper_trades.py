@@ -44,11 +44,6 @@ def check_trades():
     pe_short = ltp(25200, "pe")
     pe_long = ltp(25000, "pe")
 
-    ic_entry = 36.70
-    ic_cur = (ce_short - ce_long) + (pe_short - pe_long)
-    ic_pts = ic_entry - ic_cur
-    ic_pnl = ic_pts * 390
-
     # --- PAPER TRADE #2: Intraday Straddle (2 Lots = 130 Qty) - CLOSED ---
     # 25950 PE hit 25% SL at 12:31 IST (Closed @ 276.25 = -7,182.50 realized)
     # 25950 CE hit Trailed Profit SL at 13:29:37 IST (Closed @ 155.45 = +12,935.00 realized)
@@ -56,18 +51,29 @@ def check_trades():
 
     now_str = datetime.now().strftime("%H:%M:%S IST")
     print(f"=== LIVE PAPER MTM [{now_str}] | Spot: {spot:,.2f} | VIX: {vix:.2f} ===")
-    print(f"[Trade #1 Iron Condor | 390 Qty] Entry: 36.70 | Current: {ic_cur:.2f} | MTM: {ic_pnl:+,.2f} ({ic_pts:+.2f} pts)")
-    if ic_cur <= 7.30:
-        print("  >>> ALERT: TRADE #1 TARGET HIT (<= 7.30)! BOOK PROFIT!")
-    elif ic_pnl <= -14300:
-        print("  >>> ALERT: TRADE #1 HARD SL HIT (<= -14,300)! EXIT NOW!")
+
+    quotes_valid = all(p > 0 for p in (ce_short, ce_long, pe_short, pe_long))
+    if not quotes_valid:
+        print("[Trade #1 Iron Condor | 390 Qty] WARNING: Missing/zero option quotes from Dhan API — skipping MTM & alerts.")
+        ic_pnl = 0.0
+        ic_cur = None
+    else:
+        ic_entry = 36.70
+        ic_cur = (ce_short - ce_long) + (pe_short - pe_long)
+        ic_pts = ic_entry - ic_cur
+        ic_pnl = ic_pts * 390
+        print(f"[Trade #1 Iron Condor | 390 Qty] Entry: 36.70 | Current: {ic_cur:.2f} | MTM: {ic_pnl:+,.2f} ({ic_pts:+.2f} pts)")
+        if ic_cur <= 7.30:
+            print("  >>> ALERT: TRADE #1 TARGET HIT (<= 7.30)! BOOK PROFIT!")
+        elif ic_pnl <= -14300:
+            print("  >>> ALERT: TRADE #1 HARD SL HIT (<= -14,300)! EXIT NOW!")
 
     print(f"[Trade #2 Straddle 25950 | 130 Qty] CLOSED | CE @ 155.45 (+12,935.00) | PE @ 276.25 (-7,182.50) | Realized Gross: +5,752.50 (Net: +5,545.50)")
-    print(f"Total Paper Portfolio MTM: {ic_pnl + st_total_pnl:+,.2f}")
+    if quotes_valid:
+        print(f"Total Paper Portfolio MTM: {ic_pnl + st_total_pnl:+,.2f}")
 
     alert = (
-        ic_cur <= 7.30
-        or ic_pnl <= -14300
+        (quotes_valid and (ic_cur <= 7.30 or ic_pnl <= -14300))
         or datetime.now().strftime("%H:%M") >= "15:15"
     )
     return alert
