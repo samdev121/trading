@@ -43,6 +43,38 @@ Track which strategy generates the highest risk-adjusted yield:
 
 ## 📝 CHRONOLOGICAL PAPER TRADE LOG
 
+### 🟡 Paper Trade #4: 26-Nov-2026 | NIFTY 01-Dec VWAP Bull Put Spread (`25,750 PE / 25,550 PE`) — **OPEN**
+
+| Parameter | Planned Setup | Live Execution Details |
+| :--- | :--- | :--- |
+| **Date & Time** | 26-Nov-2026 at 10:57 AM IST | **Entry: 10:57 AM IST** (Active) |
+| **Instrument & Expiry** | `NIFTY 50` (01-Dec-2026 Expiry) | **1 Lot (65 Qty)** |
+| **Strategy Type** | **Strategy 10: VWAP-Confirmed Bull Put Spread** | Strike ID: `cmwx421hv0001u80rjqf01gd6` |
+| **Short Put Leg** | Sell `25,750 PE` @ Live Bid | Sold @ **₹108.00** *(2× Override: ₹216.00)* |
+| **Long Put Hedge** | Buy `25,550 PE` @ Live Ask | Bought @ **₹59.25** *(200-pt wing)* |
+| **Net Credit Collected** | **+48.75 Points** × 65 Qty | **Total Credit: +₹3,168.75** |
+| **Planned Target** | **50% Decay** | Close Spread @ **₹24.35** (`+₹1,586` gross) |
+| **Planned Hard Stop** | **1.0× Credit / VWAP Close** | Cut if MTM hits **`-₹3,169`** or 5-min Spot < `25,900` / VWAP |
+| **Trade Status** | **OPEN / ACTIVE 🟡** | — |
+
+---
+
+### 🟡 Paper Trade #3: 26-Nov-2026 | NIFTY 01-Dec Intraday Regime-Gated Straddle (`25,850 CE + PE`) — **OPEN**
+
+| Parameter | Planned Setup | Live Execution Details |
+| :--- | :--- | :--- |
+| **Date & Time** | 26-Nov-2026 at 10:18 AM IST | **Entry: 10:18 AM IST** (Active) |
+| **Instrument & Expiry** | `NIFTY 50` (01-Dec-2026 Expiry) | **1 Lot (65 Qty)** |
+| **Strategy Type** | **Strategy 7: Intraday Regime-Gated Straddle (20% Per-Leg SL)** | Strike ID: `cmwx2nrri00009l0rd8w3avan` |
+| **Call Leg** | Sell `25,850 CE` @ Live Bid | Sold @ **₹214.30** *(20% Hard SL: ₹257.15)* |
+| **Put Leg** | Sell `25,850 PE` @ Live Bid | Sold @ **₹189.80** *(20% Hard SL: ₹227.75)* |
+| **Combined Straddle** | **404.10 Points** × 65 Qty | **Total Credit: ₹26,266.50** |
+| **Planned Target** | **30% Combined Decay** | Close Combined @ **₹282.85** (`+₹7,913.75` gross) |
+| **Cutoff & Trail** | Trail survivor to cost if 1 leg hits 20% SL | Mandatory Square-Off: **03:15 PM IST** |
+| **Trade Status** | **OPEN / ACTIVE 🟡** | — |
+
+---
+
 ### 🟡 Paper Trade #1: 25-Nov-2026 | NIFTY 01-Dec Iron Condor (25,200 PE / 26,600 CE)
 
 | Parameter | Planned Setup | Live Execution Details |
