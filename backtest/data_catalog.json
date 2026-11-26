@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "datasets": [
+    {
+      "id": "upstox_fixed_2026_h1",
+      "path": "backtest/data/NIFTY_2026_intraday.parquet",
+      "provider": "Upstox",
+      "contract_model": "fixed_contract",
+      "expected_start": "2026-01-01",
+      "expected_end": "2026-07-21",
+      "approved_uses": [
+        "fixed_contract_execution",
+        "positional_backtest",
+        "dhan_overlap_reference"
+      ],
+      "blocked_uses": []
+    },
+    {
+      "id": "dhan_rolling_2026_h2",
+      "path": "backtest/data/dhan-2026/normalized/nifty/fixed_2026-07-22_2026-11-25.parquet",
+      "provider": "Dhan",
+      "contract_model": "rolling_window_reconstructed",
+      "expected_start": "2026-07-22",
+      "expected_end": "2026-11-25",
+      "approved_uses": [
+        "spot_features",
+        "iv_features",
+        "oi_features",
+        "volume_features",
+        "intraday_research_with_complete_path_check"
+      ],
+      "blocked_uses": [
+        "unfiltered_positional_backtest",
+        "silent_gap_filling",
+        "replacement_for_upstox_fixed_contracts"
+      ],
+      "quality_audit": "backtest/data/dhan-2026/audits/s03_coverage.json"
+    }
+  ],
+  "strategy_policies": {
+    "S03": {
+      "execution_source": "upstox_fixed_2026_h1",
+      "feature_sources": [
+        "upstox_fixed_2026_h1",
+        "dhan_rolling_2026_h2"
+      ],
+      "dhan_h2_status": "quarantined_for_positional_execution",
+      "rule": "Do not combine H1 and H2 performance until H2 fixed-contract paths pass the S03 coverage audit."
+    }
+  }
+}
